@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+        <!-- CSS -->
+        <link rel="stylesheet" href="css/css_min.css" />
+        <!-- Javascript -->
+        <script type="text/javascript" src="js.lib/jquery-1.8.3.js"></script>
+		<script type="text/javascript" src="www.gstatic.com/charts/loader.js"></script>
+    </head>
+
+    <body class="ind">
+        <div class="maincontainer">
+            <!-- 確診病例趨勢 -->
+            <section class="secTrend">
+                <div class="content">
+                    <div class="lineChart2">
+                        <div class="chart chart2">
+                            <div id="chart-2">
+                                <div style="position: relative;">
+                                    <div dir="ltr" style="position: relative; width: 497px; height: 295px;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="info">
+                            <div class="box c-1"> <div class="dot"></div> <p>美國</p> </div>
+                            <div class="box c-2"> <div class="dot"></div> <p>印度</p> </div>
+                            <div class="box c-3"> <div class="dot"></div> <p>巴西</p> </div>
+                            <div class="box c-4"> <div class="dot"></div> <p>法國</p> </div>
+                            <div class="box c-5"> <div class="dot"></div> <p>俄羅斯</p> </div>
+                            <div class="box c-6"> <div class="dot"></div> <p>英國</p> </div>
+                            <div class="box c-7"> <div class="dot"></div> <p>土耳其</p> </div>
+                            <div class="box c-8"> <div class="dot"></div> <p>義大利</p> </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <script>
+            $(document).ready(function ()
+			{
+                google.charts.load("current", { packages: ["line", "corechart"] });
+                google.charts.setOnLoadCallback(drawChart);
+                function drawChart()
+				{
+                    var formatter = new google.visualization.DateFormat({ pattern: "MMM dd, yyyy" });
+
+                    var chart2 = document.getElementById("chart-2");
+                    var twoDArray = [["日期"]];
+                    var ary = [];
+
+                    twoDArray[0].push("美國");
+                    twoDArray[0].push("XX");
+                    twoDArray[0].push("巴西");
+                    twoDArray[0].push("法國");
+                    twoDArray[0].push("俄羅斯");
+                    twoDArray[0].push("英國");
+                    twoDArray[0].push("土耳其");
+                    twoDArray[0].push("OOO");
+
+                    ary = [new Date("February 15, 2020 00:00:00")];
+                    ary.push(parseInt("15"));
+                    ary.push(parseInt("3"));
+                    ary.push(parseInt("0"));
+                    ary.push(parseInt("11"));
+                    ary.push(parseInt("2"));
+                    ary.push(parseInt("9"));
+                    ary.push(parseInt("0"));
+                    ary.push(parseInt("3"));
+                    twoDArray.push(ary);
+                    ary = [new Date("February 16, 2020 00:00:00")];
+                    ary.push(parseInt("15"));
+                    ary.push(parseInt("3"));
+                    ary.push(parseInt("0"));
+                    ary.push(parseInt("12"));
+                    ary.push(parseInt("2"));
+                    ary.push(parseInt("9"));
+                    ary.push(parseInt("0"));
+                    ary.push(parseInt("3"));
+                    twoDArray.push(ary);
+                    ary = [new Date("February 17, 2020 00:00:00")];
+                    ary.push(parseInt("15"));
+                    ary.push(parseInt("3"));
+                    ary.push(parseInt("0"));
+                    ary.push(parseInt("12"));
+                    ary.push(parseInt("2"));
+                    ary.push(parseInt("9"));
+                    ary.push(parseInt("0"));
+                    ary.push(parseInt("3"));
+                    twoDArray.push(ary);
+                    ary = [new Date("February 18, 2020 00:00:00")];
+                    ary.push(parseInt("15"));
+                    ary.push(parseInt("3"));
+                    ary.push(parseInt("0"));
+                    ary.push(parseInt("12"));
+                    ary.push(parseInt("2"));
+                    ary.push(parseInt("9"));
+                    ary.push(parseInt("0"));
+                    ary.push(parseInt("3"));
+                    twoDArray.push(ary);
+                    ary = [new Date("February 19, 2020 00:00:00")];
+                    ary.push(parseInt("15"));
+                    ary.push(parseInt("3"));
+                    ary.push(parseInt("0"));
+                    ary.push(parseInt("12"));
+                    ary.push(parseInt("2"));
+                    ary.push(parseInt("9"));
+                    ary.push(parseInt("0"));
+                    ary.push(parseInt("3"));
+                    twoDArray.push(ary);
+
+                    var data2 = google.visualization.arrayToDataTable(twoDArray);
+                    formatter.format(data2, 0);
+                    var options2 =
+					{
+                        width: $(".chart2 img").width(),
+                        height: $(".chart2 img").height(),
+                        chartArea:
+						{
+                            left: "10%",
+                            right: "7%",
+                            width: "83%",
+                            height: "85%",
+                        },
+                        lineWidth: 2,
+                        pointSize: 4,
+                        colors: ["#E30E0E", "#EDC29C", "#F4D486", "#B8DE8F", "#90DEEA", "#89ACE5", "#C599E4", "#E7A3D6"],
+                        hAxis:
+						{
+                            format: "M/d",
+                        },
+                        vAxis:
+						{
+                            format: "short",
+                        },
+                        legend:
+						{
+                            position: "none",
+                        },
+                    };
+                    var worldAndChina = new google.visualization.LineChart(chart2);
+                    worldAndChina.draw(data2, options2);
+                }
+            });
+        </script>
+    </body>
+</html>

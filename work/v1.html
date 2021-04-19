@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+        <!-- CSS -->
+        <link rel="stylesheet" href="css/css_min.css" />
+        <!-- Javascript -->
+        <script type="text/javascript" src="js.lib/jquery-1.8.3.js"></script>
+		<script type="text/javascript" src="www.gstatic.com/charts/loader.js"></script>
+    </head>
+
+    <body class="ind">
+        <div class="maincontainer">
+            <!-- 光學數據 -->
+            <section class="secTrend">
+                <div class="content">
+                    <div class="lineChart2">
+                        <div class="chart chart2">
+                            <div id="chart-2">
+                                <div style="position: relative;">
+                                    <div dir="ltr" style="position: relative; width: 497px; height: 295px;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- <div class="info">
+                            <div class="box c-1"> <div class="dot"></div> <p>Va</p> </div>
+                            <div class="box c-2"> <div class="dot"></div> <p>Vb</p> </div>
+                            <div class="box c-3"> <div class="dot"></div> <p>Vc</p> </div>
+                            <div class="box c-4"> <div class="dot"></div> <p>Ra</p> </div>
+                            <div class="box c-5"> <div class="dot"></div> <p>Rb</p> </div>
+                            <div class="box c-6"> <div class="dot"></div> <p>Rc</p> </div>
+                        </div> -->
+                        <input type="button" onclick="redrawChart();" value="更新">
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <script>
+            var cnt=1;
+            var L1 = [1,2,3,4,5,4];
+            var L2 = [2,4,6,8,10,8];
+            var L3 = [3,6,9,12,15,12];
+            function redrawChart()
+            {
+                google.charts.load("current", { packages: ["line", "corechart"] });
+                google.charts.setOnLoadCallback(drawChart);
+                function drawChart()
+                {
+                    //console.log(cnt);
+                    var chart2 = document.getElementById("chart-2");
+                    var data = new google.visualization.DataTable();
+                    data.addColumn('number', 'y');
+                    data.addColumn('number', 'Line 1');
+                    data.addColumn('number', 'Line 2');
+					data.addColumn('number', 'Line 3');
+                    data.addColumn({type: 'string', role: 'tooltip'});
+                    //data.addRow([1, 1, 2, "Some fancy tooltip"]);
+                    //data.addRow([2, 2, 4, "Some fancy tooltip"]);
+                    //data.addRow([3, 3, 6, "Some fancy tooltip"]);
+                    //data.addRow([4, 4, 8, "Some fancy tooltip"]);
+                    //data.addRow([5, 5, 10, "Some fancy tooltip"]);
+                    //data.addRow([6, 4, 8, "Some fancy tooltip"]);
+                    for(ii=0;ii<cnt;ii++)
+                    {
+                        data.addRow([ii, L1[ii], L2[ii], L3[ii], ""]);
+                    }
+                    var options =
+                    {
+                        title: 'Graph'
+                    };
+                    var chart = new google.visualization.LineChart(document.getElementById('chart-2'))
+                    chart.draw(data, options);
+                    cnt++;
+                }
+            }
+
+            window.onresize = redrawChart;
+        </script>
+    </body>
+</html>
